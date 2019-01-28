@@ -282,6 +282,144 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/28/Constructing-CUTLASS-with-Windows-10-and-CUDA-10-0/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Subject_No_i">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/nakano_miku.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Subject_No_i's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/28/Constructing-CUTLASS-with-Windows-10-and-CUDA-10-0/" itemprop="url">Constructing CUTLASS with Windows 10 and CUDA 10.0</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-28T10:48:44+08:00">
+                2019-01-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="About-CUTLASS"><a href="#About-CUTLASS" class="headerlink" title="About CUTLASS"></a>About CUTLASS</h1><p>CUTLASS is a template library developed by Nvidia with CUDA 10.0 aiming to deal with Linear Algebra Computation. You can find CUTLASS <a href="https://github.com/NVIDIA/CUTLASS" target="_blank" rel="noopener">here</a>. The readme.md of the original project is based on unix family OS, This article will introduce how to construct CUTLASS on windows 10.</p>
+<h1 id="Parperation"><a href="#Parperation" class="headerlink" title="Parperation"></a>Parperation</h1><ul>
+<li>Windows 10 64-bit</li>
+<li>CUDA 10.0</li>
+<li>Visual Studio 2017</li>
+<li>CMAKE (Version &gt; 3.10)</li>
+<li>git</li>
+</ul>
+<p>Please make sure all the CUDA component are in the system path, and test with related command: nvcc, cl, etc.</p>
+<h1 id="COnstructing-CUTLASS"><a href="#COnstructing-CUTLASS" class="headerlink" title="COnstructing CUTLASS"></a>COnstructing CUTLASS</h1><p>Since this project use test suite from google named gtest, so to run the unit test in it, gtest is essential.</p>
+<p>First, get the repo:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/NVIDIA/CUTLASS</span><br></pre></td></tr></table></figure></p>
+<p>Second, get the test sub module:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure></p>
+<p>Then, create the build target folder and enter in:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir build &amp;&amp; cd build</span><br></pre></td></tr></table></figure></p>
+<p>It’s time to construct, different with the official document, you should specify the generator if you build with Windows 10, so, some adjustment should be taken:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake -G &quot;Visual Studio 15 2017 Win64&quot; ..</span><br></pre></td></tr></table></figure></p>
+<p>The “Win64” at last is quite important. </p>
+<p>If you make this repo in windows 10, it is quite possible that pthread is not installed on your PC, and you will see the warning information like:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- Looking for pthread.h</span><br><span class="line">-- Looking for pthread.h - not found</span><br></pre></td></tr></table></figure></p>
+<p>This can be ignore. </p>
+<p>After that, you should see complete tree structure in your working dir like:<br>/build–/CMakeFiles<br>/——-/examples<br>/——-/tools<br>/——-/x64<br>/—–CUTLASS.sln<br>/—–.(Some project generated files)<br>/—–.<br>/—–.<br>Then, open the <strong>CUTLASS.sln</strong> with Visual Studio 2017, right click on the project <strong>ALL_BUILD</strong>, and wait.</p>
+<p>At last, you should see executable file in /tools/test/unit/debug/cutlass_unit_test.exe, run it!</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/25/Compiling-Tensorflow-1-12-0-with-CUDA-10-0-and-cuDNN-7-4-2/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -584,7 +722,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -606,7 +744,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
