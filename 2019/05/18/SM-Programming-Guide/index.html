@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="这一篇是Volta SM Programming Guide的自翻，渣水平见谅，由于Ampere还没正式发布，就不放最新的了。">
+<meta name="description" content="这一篇是Volta SM Programming Guide的自翻，渣水平见谅，由于Ampere还没正式发布，就不放最新的了。 概览术语CTACTA (Cooperative Thread Array)是一组具备对称的执行、访存性能的线程。CTA必须支持1-1024之间的任意数目的线程。 QuadQuad是一组具有特殊局部性的4个线程：这四个线程在屏幕空间的2个维度(X与Y)相关联，以允许通过有限">
 <meta name="keywords" content="CUDA,PTX,SASS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SM Programming Guide">
 <meta property="og:url" content="http://yoursite.com/2019/05/18/SM-Programming-Guide/index.html">
 <meta property="og:site_name" content="Subject_No_i&#39;s Blog">
-<meta property="og:description" content="这一篇是Volta SM Programming Guide的自翻，渣水平见谅，由于Ampere还没正式发布，就不放最新的了。">
+<meta property="og:description" content="这一篇是Volta SM Programming Guide的自翻，渣水平见谅，由于Ampere还没正式发布，就不放最新的了。 概览术语CTACTA (Cooperative Thread Array)是一组具备对称的执行、访存性能的线程。CTA必须支持1-1024之间的任意数目的线程。 QuadQuad是一组具有特殊局部性的4个线程：这四个线程在屏幕空间的2个维度(X与Y)相关联，以允许通过有限">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-02T02:55:31.823Z">
+<meta property="og:updated_time" content="2019-06-02T03:36:58.374Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SM Programming Guide">
-<meta name="twitter:description" content="这一篇是Volta SM Programming Guide的自翻，渣水平见谅，由于Ampere还没正式发布，就不放最新的了。">
+<meta name="twitter:description" content="这一篇是Volta SM Programming Guide的自翻，渣水平见谅，由于Ampere还没正式发布，就不放最新的了。 概览术语CTACTA (Cooperative Thread Array)是一组具备对称的执行、访存性能的线程。CTA必须支持1-1024之间的任意数目的线程。 QuadQuad是一组具有特殊局部性的4个线程：这四个线程在屏幕空间的2个维度(X与Y)相关联，以允许通过有限">
 
 
 
@@ -351,6 +351,15 @@
 
       
         <p>这一篇是Volta SM Programming Guide的自翻，渣水平见谅，由于Ampere还没正式发布，就不放最新的了。</p>
+<h1 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h1><h2 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h2><h3 id="CTA"><a href="#CTA" class="headerlink" title="CTA"></a>CTA</h3><p>CTA (Cooperative Thread Array)是一组具备对称的执行、访存性能的线程。CTA必须支持1-1024之间的任意数目的线程。</p>
+<h3 id="Quad"><a href="#Quad" class="headerlink" title="Quad"></a>Quad</h3><p>Quad是一组具有特殊局部性的4个线程：这四个线程在屏幕空间的2个维度(X与Y)相关联，以允许通过有限元素差分的方式计算该点导数。Quad是片段处理(Fragment Processing)的基本单元。</p>
+<h3 id="Primitive"><a href="#Primitive" class="headerlink" title="Primitive"></a>Primitive</h3><p>Primitive可被解释为实体，一个实体是由一系列顶点组织而成的图形。一个实体是顶点处理和几何处理的基本单元。</p>
+<h3 id="Patch"><a href="#Patch" class="headerlink" title="Patch"></a>Patch</h3><p>Patch是一组能够参数化描述几何图形的控制点。Patch本身被分为线、三角形、多边形，Patch是光栅操作(Tessellation Task)的基本单元。</p>
+<h3 id="Tessellation-Tasks"><a href="#Tessellation-Tasks" class="headerlink" title="Tessellation Tasks"></a>Tessellation Tasks</h3><h3 id="Tile"><a href="#Tile" class="headerlink" title="Tile"></a>Tile</h3><h3 id="Sub-Tile"><a href="#Sub-Tile" class="headerlink" title="Sub-Tile"></a>Sub-Tile</h3><h2 id="流多处理器-Stream-Multi-Processor-SM"><a href="#流多处理器-Stream-Multi-Processor-SM" class="headerlink" title="流多处理器(Stream Multi-Processor, SM)"></a>流多处理器(Stream Multi-Processor, SM)</h2><p>流多处理器被定义为一个CTA/Quad/Primitive/Patch的执行、资源空间，该空间具有如下属性：</p>
+<ul>
+<li>该空间内的任务不与空间外的任务产生资源竞争。</li>
+<li></li>
+</ul>
 
       
     </div>
@@ -445,8 +454,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -554,6 +572,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概览"><span class="nav-number">1.</span> <span class="nav-text">概览</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#术语"><span class="nav-number">1.1.</span> <span class="nav-text">术语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CTA"><span class="nav-number">1.1.1.</span> <span class="nav-text">CTA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quad"><span class="nav-number">1.1.2.</span> <span class="nav-text">Quad</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Primitive"><span class="nav-number">1.1.3.</span> <span class="nav-text">Primitive</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Patch"><span class="nav-number">1.1.4.</span> <span class="nav-text">Patch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tessellation-Tasks"><span class="nav-number">1.1.5.</span> <span class="nav-text">Tessellation Tasks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tile"><span class="nav-number">1.1.6.</span> <span class="nav-text">Tile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sub-Tile"><span class="nav-number">1.1.7.</span> <span class="nav-text">Sub-Tile</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流多处理器-Stream-Multi-Processor-SM"><span class="nav-number">1.2.</span> <span class="nav-text">流多处理器(Stream Multi-Processor, SM)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

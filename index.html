@@ -354,6 +354,15 @@
         
           
             <p>这一篇是Volta SM Programming Guide的自翻，渣水平见谅，由于Ampere还没正式发布，就不放最新的了。</p>
+<h1 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h1><h2 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h2><h3 id="CTA"><a href="#CTA" class="headerlink" title="CTA"></a>CTA</h3><p>CTA (Cooperative Thread Array)是一组具备对称的执行、访存性能的线程。CTA必须支持1-1024之间的任意数目的线程。</p>
+<h3 id="Quad"><a href="#Quad" class="headerlink" title="Quad"></a>Quad</h3><p>Quad是一组具有特殊局部性的4个线程：这四个线程在屏幕空间的2个维度(X与Y)相关联，以允许通过有限元素差分的方式计算该点导数。Quad是片段处理(Fragment Processing)的基本单元。</p>
+<h3 id="Primitive"><a href="#Primitive" class="headerlink" title="Primitive"></a>Primitive</h3><p>Primitive可被解释为实体，一个实体是由一系列顶点组织而成的图形。一个实体是顶点处理和几何处理的基本单元。</p>
+<h3 id="Patch"><a href="#Patch" class="headerlink" title="Patch"></a>Patch</h3><p>Patch是一组能够参数化描述几何图形的控制点。Patch本身被分为线、三角形、多边形，Patch是光栅操作(Tessellation Task)的基本单元。</p>
+<h3 id="Tessellation-Tasks"><a href="#Tessellation-Tasks" class="headerlink" title="Tessellation Tasks"></a>Tessellation Tasks</h3><h3 id="Tile"><a href="#Tile" class="headerlink" title="Tile"></a>Tile</h3><h3 id="Sub-Tile"><a href="#Sub-Tile" class="headerlink" title="Sub-Tile"></a>Sub-Tile</h3><h2 id="流多处理器-Stream-Multi-Processor-SM"><a href="#流多处理器-Stream-Multi-Processor-SM" class="headerlink" title="流多处理器(Stream Multi-Processor, SM)"></a>流多处理器(Stream Multi-Processor, SM)</h2><p>流多处理器被定义为一个CTA/Quad/Primitive/Patch的执行、资源空间，该空间具有如下属性：</p>
+<ul>
+<li>该空间内的任务不与空间外的任务产生资源竞争。</li>
+<li></li>
+</ul>
 
           
         
