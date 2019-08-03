@@ -353,42 +353,17 @@
       
         
           
-            <p>这一篇是Volta SM Programming Guide的自翻，渣水平见谅，由于Ampere还没正式发布，就不放最新的了。</p>
-<h1 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h1><h2 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h2><h3 id="CTA"><a href="#CTA" class="headerlink" title="CTA"></a>CTA</h3><p>CTA (Cooperative Thread Array)是一组具备对称的执行、访存性能的线程。CTA必须支持1-1024之间的任意数目的线程。</p>
-<h3 id="Quad"><a href="#Quad" class="headerlink" title="Quad"></a>Quad</h3><p>Quad是一组具有特殊局部性的4个线程：这四个线程在屏幕空间的2个维度(X与Y)相关联，以允许通过有限元素差分的方式计算该点导数。Quad是片段处理(Fragment Processing)的基本单元。</p>
-<h3 id="Primitive"><a href="#Primitive" class="headerlink" title="Primitive"></a>Primitive</h3><p>Primitive可被解释为实体，一个实体是由一系列顶点组织而成的图形。一个实体是顶点处理和几何处理的基本单元。</p>
-<h3 id="Patch"><a href="#Patch" class="headerlink" title="Patch"></a>Patch</h3><p>Patch是一组能够参数化描述几何图形的控制点。Patch本身被分为线、三角形、多边形，Patch是光栅操作(Tessellation Task)的基本单元。</p>
-<h3 id="Tessellation-Tasks"><a href="#Tessellation-Tasks" class="headerlink" title="Tessellation Tasks"></a>Tessellation Tasks</h3><p>光栅操作是Patch操作的一个碎片/片段。某些Patch在处理时能被细分为光栅操作，这些光栅操作能被分别独立执行。</p>
-<h3 id="Tile"><a href="#Tile" class="headerlink" title="Tile"></a>Tile</h3><p>Tiles是基于坐标轴细分的纹理平面。Tiles由特定几个Quad组成。光栅化的图像处理流水线由于某些分布上的原因被组织成Tiles。光栅处理流水线输出的是由若干个被限定坐标的Quad组成的Tile。</p>
-<h3 id="Sub-Tile"><a href="#Sub-Tile" class="headerlink" title="Sub-Tile"></a>Sub-Tile</h3><p>Tiles的一级细分。</p>
-<h2 id="流多处理器-Stream-Multi-Processor-SM"><a href="#流多处理器-Stream-Multi-Processor-SM" class="headerlink" title="流多处理器(Stream Multi-Processor, SM)"></a>流多处理器(Stream Multi-Processor, SM)</h2><p>流多处理器被定义为一个CTA/Quad/Primitive/Patch的执行、资源空间，该空间具有如下属性：</p>
-<ul>
-<li>该空间内的任务不与空间外的任务产生资源竞争。</li>
-<li></li>
-</ul>
-<h2 id="大纲"><a href="#大纲" class="headerlink" title="大纲"></a>大纲</h2><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>该文档使用如下数据类型：</p>
-<ul>
-<li>u8    ：无符号8位整数，1字节</li>
-<li>u16   ：无符号16位整数，2字节</li>
-<li>u32   ：无符号32位整数，4字节</li>
-<li><p>u64   ：无符号64位整数，8字节</p>
-</li>
-<li><p>s8    ：二进制补码形式有符号8位整数，1字节</p>
-</li>
-<li>s16   ：二进制补码形式有符号16位整数，2字节</li>
-<li>s32   ：二进制补码形式有符号32位整数，4字节</li>
-<li><p>s64   ：二进制补码形式有符号64位整数，8字节</p>
-</li>
-<li><p>fp16  ：1-5-10形式16位浮点数，2字节</p>
-</li>
-<li>fp32  ：1-8-23形式32位浮点数，4字节</li>
-<li>fp64  ：1-11-52形式64位浮点数，8字节</li>
-</ul>
-<h3 id="浮点数表示形式"><a href="#浮点数表示形式" class="headerlink" title="浮点数表示形式"></a>浮点数表示形式</h3><p>浮点格式在前文已经列出，浮点数与整数工享相同的寄存器文件。双精度浮点数使用2个连续的32位寄存器，这两个寄存器必须先偶后奇。偶数寄存器存储低位，奇数寄存器存储高位。</p>
-<h3 id="整数表示形式"><a href="#整数表示形式" class="headerlink" title="整数表示形式"></a>整数表示形式</h3><p>整数格式在前文已经列出，尽管硬件本身支持有符号与无符号的64位长整数的转换，当操作数大于32位整数时，还是需要使用组成序列的多条指令。整数与浮点数工享寄存器文件。</p>
-<h3 id="实验性功能"><a href="#实验性功能" class="headerlink" title="实验性功能"></a>实验性功能</h3><p>该表格描述三种阶段的新特性：未验证、内部、外部。</p>
-<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><h3 id="浮点数运算规则"><a href="#浮点数运算规则" class="headerlink" title="浮点数运算规则"></a>浮点数运算规则</h3>
-          
+          这一篇是Volta SM Programming Guide的自翻，渣水平见谅，由于Ampere还没正式发布，就不放最新的了。
+概览术语CTACTA (Cooperative Thread Array)是一组具备对称的执行、访存性能的线程。CTA必须支持1-1024之间的任意数目的线程。
+QuadQ
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/18/SM-Programming-Guide/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -506,13 +481,18 @@
       
         
           
-            <p>首先评论一下这个游戏，我不知道为什么IGN只给打7分，给我打我真的打8.5-9。这个游戏属实太戳我了，不管是剧情、关卡设计还是玩法。<br>辣么不说废话了，武器Tips目的主要在于：</p>
-<ul>
-<li>推荐一下我觉得好用的武器</li>
-<li>太久没更新博客<br>辣莫武器Tips还是从单人和多人入手好了。在此之前，稍稍介绍一下本作我已经解锁了的武器。此处以对空/对面/皆可做区分。<h1 id="General"><a href="#General" class="headerlink" title="General"></a>General</h1><h3 id="MSL"><a href="#MSL" class="headerlink" title="MSL"></a>MSL</h3>那么这个就是鹰击长空系列中所谓的JSM(Joint Strike Missile)，所谓联合攻击导弹既可以攻击空中单位也可以攻击面上单位，然而现实很残酷，不存在这样的导弹。这种导弹是玩家在游戏中发射机会最多的导弹，标准锁定距离2000米，因制导性能不佳，发射时建议咬尾时发射，务必不要再敌机9点钟和3点钟方向发射，TU-160都能躲掉。对于正面遭遇，建议避免大攻角发射。导弹威力较小，基本只有轻型战斗机比如米格，F16这种标准的高低搭配轻型战斗机可以一发击落，重型战斗机比如SU系，攻击机等需要2-4发。配件建议携带加快导弹飞行速度，那个加制导能力的聊胜于无。<h3 id="PLSL"><a href="#PLSL" class="headerlink" title="PLSL"></a>PLSL</h3>激光机炮，高难度打无人机（真他妈不是人打的）狗斗时候有奇效。19关武库鸟SU-57+PLSL苏联歼星舰了解一下。<h3 id="EML"><a href="#EML" class="headerlink" title="EML"></a>EML</h3>电磁炮，摸奖武器，打船一流，有效距离10000m，装填较慢，打的时候建议减速，有几关要刷分的一定要带，可以在舰载机还未起飞的情况下直接击沉航母。<h3 id="TLS"><a href="#TLS" class="headerlink" title="TLS"></a>TLS</h3>看上去很牛逼的武器，但是用起来真的不行，有效距离6000m，最要命的是电磁炮3发解决一艘航母这个扫2发还扫不爆一艘航母，燃用想用这个打无人机的也不用想了，真的不好用。<h3 id="MGP"><a href="#MGP" class="headerlink" title="MGP"></a>MGP</h3>机炮吊舱，这个武器也算机炮，所以可以用来完成机炮打飞机的任务。<h1 id="Anti-Air"><a href="#Anti-Air" class="headerlink" title="Anti-Air:"></a>Anti-Air:</h1><h3 id="SAAM"><a href="#SAAM" class="headerlink" title="SAAM"></a>SAAM</h3>半主动雷达制导空空导弹，这个导弹在鹰击长空2里面锁定距离是10000m，ACE7锁定距离6000m，制导能力很不错，只要目标保持在雷达照射范围内。<h3 id="SASM"><a href="#SASM" class="headerlink" title="SASM"></a>SASM</h3>接近目标后如果无法直接命中将会空爆的导弹，本身制导能力一般，但是可以磨削，锁定距离4000m。<h3 id="HPAA"><a href="#HPAA" class="headerlink" title="HPAA"></a>HPAA</h3>高威力空空导弹，专门用来打TU-160/TU-95/A-10/SU-34这些的，不多说了。<h3 id="LAAM"><a href="#LAAM" class="headerlink" title="LAAM"></a>LAAM</h3>超远距离空空导弹，说是超远，但是还是没有电磁炮远，目前体感无人机在距离远的时候动作幅度会比较小，这时候用LAAM打命中率会比较高。<h3 id="HVAA"><a href="#HVAA" class="headerlink" title="HVAA"></a>HVAA</h3>高速空空导弹，目前个人没发现什么很好用的用法。<h3 id="HCAA"><a href="#HCAA" class="headerlink" title="HCAA"></a>HCAA</h3><h3 id="QAAM"><a href="#QAAM" class="headerlink" title="QAAM"></a>QAAM</h3>制导能力较强，威力也大，加上特殊导弹制导插件后制导能力极强，多人中会打一点的很多都会带这个导弹。<h3 id="4-6-8-AAM"><a href="#4-6-8-AAM" class="headerlink" title="4/6/8 AAM"></a>4/6/8 AAM</h3>ACE7 中多联装空空/空面导弹的锁定方式（火控雷达算法）与鹰击长空中不太一样。鹰击长空中多联装AAM每个目标锁定一发，故可以等目标机全部进入火控雷达照射范围后发射。而ACE7则为锁定已经在照射范围中的敌机，并短时间内将这些目标分配给4/6/8枚导弹，单个目标可被锁定4（不知道是不是至多4）枚导弹。然而这个多联装空空导弹的制导能力真的很差，15关开头就算是占据高海平面从后上方往下锁定敌机，被3枚多联装空空导弹锁定的幻影2000-5都能随便逃走，而且发射一次8发就没了，真的很浪费，要避免浪费只能刚锁定1-2个目标的时候就击发，那我还用你这个导弹干啥呢？？<h1 id="Anti-Surface"><a href="#Anti-Surface" class="headerlink" title="Anti-Surface:"></a>Anti-Surface:</h1>本节中所有的空面导弹的末端制导方式与一般导弹是不一样的，其机动方式平飞至目标上空立即调整姿态至高角度俯冲。<h3 id="LASM"><a href="#LASM" class="headerlink" title="LASM"></a>LASM</h3><h3 id="LACM"><a href="#LACM" class="headerlink" title="LACM"></a>LACM</h3><h3 id="LAGM"><a href="#LAGM" class="headerlink" title="LAGM"></a>LAGM</h3><h3 id="UGB"><a href="#UGB" class="headerlink" title="UGB"></a>UGB</h3>无引导炸弹，载弹量多，范围大，可以第六关用用。<h3 id="RKT"><a href="#RKT" class="headerlink" title="RKT"></a>RKT</h3>RKT写的40！不是说只有40发！意思是能发射40*8发，射完8发算一次，总共能射40次。<h3 id="GRKT"><a href="#GRKT" class="headerlink" title="GRKT"></a>GRKT</h3><h3 id="GPB"><a href="#GPB" class="headerlink" title="GPB"></a>GPB</h3><h3 id="SFFS"><a href="#SFFS" class="headerlink" title="SFFS"></a>SFFS</h3><h3 id="SOD"><a href="#SOD" class="headerlink" title="SOD"></a>SOD</h3>F-35配置的航弹，对投射方向较为严苛，因杀伤范围是投射方向的延伸，故需要机鼻正对目标簇方向时投射较好。<h3 id="XSBD"><a href="#XSBD" class="headerlink" title="XSBD"></a>XSBD</h3>可以说是目前我感觉最好用的空面武器了，只有F-22有，锁定发射，炸弹带引导，威力大。极其顺手。<h3 id="4-6-8-AGM"><a href="#4-6-8-AGM" class="headerlink" title="4/6/8 AGM"></a>4/6/8 AGM</h3>多联装空面导弹，锁定方式和多联装空空导弹类似。不过因为用到这种导弹的时候都是地面目标很多很密集的时候，所以不会出现一个地面雷达站锁3-4枚导弹的情况，用起来比多联装空空导弹好用。</li>
-</ul>
+          首先评论一下这个游戏，我不知道为什么IGN只给打7分，给我打我真的打8.5-9。这个游戏属实太戳我了，不管是剧情、关卡设计还是玩法。辣么不说废话了，武器Tips目的主要在于：
 
-          
+推荐一下我觉得好用的武器
+太久没更新博客辣莫武器Tips还是从单人和多人入手好了。在此之前，稍稍介绍一下本作我已经解锁了的
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/26/皇牌空战7：未知天空-ACE7-Skies-Unknown-武器Tips/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -652,27 +632,15 @@
       
         
           
-            <h1 id="About-CUTLASS"><a href="#About-CUTLASS" class="headerlink" title="About CUTLASS"></a>About CUTLASS</h1><p>CUTLASS is a template library developed by Nvidia with CUDA 10.0 aiming to deal with Linear Algebra Computation. You can find CUTLASS <a href="https://github.com/NVIDIA/CUTLASS" target="_blank" rel="noopener">here</a>. The readme.md of the original project is based on unix family OS, This article will introduce how to construct CUTLASS on windows 10.</p>
-<h1 id="Parperation"><a href="#Parperation" class="headerlink" title="Parperation"></a>Parperation</h1><ul>
-<li>Windows 10 64-bit</li>
-<li>CUDA 10.0</li>
-<li>Visual Studio 2017</li>
-<li>CMAKE (Version &gt; 3.10)</li>
-<li>git</li>
-</ul>
-<p>Please make sure all the CUDA component are in the system path, and test with related command: nvcc, cl, etc.</p>
-<h1 id="Constructing-CUTLASS"><a href="#Constructing-CUTLASS" class="headerlink" title="Constructing CUTLASS"></a>Constructing CUTLASS</h1><p>Since this project use test suite from google named gtest, so to run the unit test in it, gtest is essential.</p>
-<p>First, get the repo:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/NVIDIA/CUTLASS</span><br></pre></td></tr></table></figure></p>
-<p>Second, get the test sub module:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure></p>
-<p>Then, create the build target folder and enter in:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir build &amp;&amp; cd build</span><br></pre></td></tr></table></figure></p>
-<p>It’s time to construct, different with the official document, you should specify the generator if you build with Windows 10, so, some adjustment should be taken:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake -G &quot;Visual Studio 15 2017 Win64&quot; ..</span><br></pre></td></tr></table></figure></p>
-<p>The “Win64” at last is quite important. </p>
-<p>If you make this repo in windows 10, it is quite possible that pthread is not installed on your PC, and you will see the warning information like:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- Looking for pthread.h</span><br><span class="line">-- Looking for pthread.h - not found</span><br></pre></td></tr></table></figure></p>
-<p>This can be ignore. </p>
-<p>After that, you should see complete tree structure in your working dir like:<br>/build–/CMakeFiles<br>/——-/examples<br>/——-/tools<br>/——-/x64<br>/—–CUTLASS.sln<br>/—–.(Some project generated files)<br>/—–.<br>/—–.<br>Then, open the <strong>CUTLASS.sln</strong> with Visual Studio 2017, right click on the project <strong>ALL_BUILD</strong>, select build, and wait.</p>
-<p>At last, you should see executable file in /tools/test/unit/debug/cutlass_unit_test.exe, run it!</p>
-
-          
+          About CUTLASSCUTLASS is a template library developed by Nvidia with CUDA 10.0 aiming to deal with Linear Algebra Computation. You can find CUTLASS her
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/28/Constructing-CUTLASS-with-Windows-10-and-CUDA-10-0/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
