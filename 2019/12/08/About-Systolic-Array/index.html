@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="CUDA,C,C++,CUTLASS,">
+  <meta name="keywords" content="Arch,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="About CUTLASSCUTLASS is a template library developed by Nvidia with CUDA 10.0 aiming to deal with Linear Algebra Computation. You can find CUTLASS here. The readme.md of the original project is based">
-<meta name="keywords" content="CUDA,C,C++,CUTLASS">
+<meta name="description" content="背景为什么有这篇文章？近两年深度学习专用芯片(ASIC)尤其是推理芯片层出不穷，Google的TPU，NVIDIA的Tensor Core，寒武纪的MLU，使用的架构都不尽相同，这里仅对ASIC现状结合自己的学习进行一个简单的总结。">
+<meta name="keywords" content="Arch">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Constructing CUTLASS with Windows 10 and CUDA 10.0">
-<meta property="og:url" content="http://yoursite.com/2019/01/28/Constructing-CUTLASS-with-Windows-10-and-CUDA-10-0/index.html">
+<meta property="og:title" content="About Deep Learning ASIC">
+<meta property="og:url" content="http://yoursite.com/2019/12/08/About-Systolic-Array/index.html">
 <meta property="og:site_name" content="Subject_No_i&#39;s Blog">
-<meta property="og:description" content="About CUTLASSCUTLASS is a template library developed by Nvidia with CUDA 10.0 aiming to deal with Linear Algebra Computation. You can find CUTLASS here. The readme.md of the original project is based">
+<meta property="og:description" content="背景为什么有这篇文章？近两年深度学习专用芯片(ASIC)尤其是推理芯片层出不穷，Google的TPU，NVIDIA的Tensor Core，寒武纪的MLU，使用的架构都不尽相同，这里仅对ASIC现状结合自己的学习进行一个简单的总结。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-28T13:40:44.229Z">
+<meta property="og:updated_time" content="2019-12-08T13:15:52.415Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Constructing CUTLASS with Windows 10 and CUDA 10.0">
-<meta name="twitter:description" content="About CUTLASSCUTLASS is a template library developed by Nvidia with CUDA 10.0 aiming to deal with Linear Algebra Computation. You can find CUTLASS here. The readme.md of the original project is based">
+<meta name="twitter:title" content="About Deep Learning ASIC">
+<meta name="twitter:description" content="背景为什么有这篇文章？近两年深度学习专用芯片(ASIC)尤其是推理芯片层出不穷，Google的TPU，NVIDIA的Tensor Core，寒武纪的MLU，使用的架构都不尽相同，这里仅对ASIC现状结合自己的学习进行一个简单的总结。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/28/Constructing-CUTLASS-with-Windows-10-and-CUDA-10-0/">
+  <link rel="canonical" href="http://yoursite.com/2019/12/08/About-Systolic-Array/">
 
 
 
 
 
-  <title>Constructing CUTLASS with Windows 10 and CUDA 10.0 | Subject_No_i's Blog</title>
+  <title>About Deep Learning ASIC | Subject_No_i's Blog</title>
   
 
 
@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/28/Constructing-CUTLASS-with-Windows-10-and-CUDA-10-0/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/08/About-Systolic-Array/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Subject_No_i">
@@ -300,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Constructing CUTLASS with Windows 10 and CUDA 10.0</h1>
+          <h1 class="post-title" itemprop="name headline">About Deep Learning ASIC</h1>
         
 
         <div class="post-meta">
@@ -312,8 +312,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-28T10:48:44+08:00">
-                2019-01-28
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-08T21:13:10+08:00">
+                2019-12-08
               </time>
             
 
@@ -322,28 +322,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Constructing-environment/" itemprop="url" rel="index">
-                    <span itemprop="name">Constructing environment</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -372,25 +350,7 @@
       
 
       
-        <h1 id="About-CUTLASS"><a href="#About-CUTLASS" class="headerlink" title="About CUTLASS"></a>About CUTLASS</h1><p>CUTLASS is a template library developed by Nvidia with CUDA 10.0 aiming to deal with Linear Algebra Computation. You can find CUTLASS <a href="https://github.com/NVIDIA/CUTLASS" target="_blank" rel="noopener">here</a>. The readme.md of the original project is based on unix family OS, This article will introduce how to construct CUTLASS on windows 10.</p>
-<h1 id="Parperation"><a href="#Parperation" class="headerlink" title="Parperation"></a>Parperation</h1><ul>
-<li>Windows 10 64-bit</li>
-<li>CUDA 10.0</li>
-<li>Visual Studio 2017</li>
-<li>CMAKE (Version &gt; 3.10)</li>
-<li>git</li>
-</ul>
-<p>Please make sure all the CUDA component are in the system path, and test with related command: nvcc, cl, etc.</p>
-<h1 id="Constructing-CUTLASS"><a href="#Constructing-CUTLASS" class="headerlink" title="Constructing CUTLASS"></a>Constructing CUTLASS</h1><p>Since this project use test suite from google named gtest, so to run the unit test in it, gtest is essential.</p>
-<p>First, get the repo:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/NVIDIA/CUTLASS</span><br></pre></td></tr></table></figure></p>
-<p>Second, get the test sub module:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure></p>
-<p>Then, create the build target folder and enter in:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir build &amp;&amp; cd build</span><br></pre></td></tr></table></figure></p>
-<p>It’s time to construct, different with the official document, you should specify the generator if you build with Windows 10, so, some adjustment should be taken:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake -G &quot;Visual Studio 15 2017 Win64&quot; ..</span><br></pre></td></tr></table></figure></p>
-<p>The “Win64” at last is quite important. </p>
-<p>If you make this repo in windows 10, it is quite possible that pthread is not installed on your PC, and you will see the warning information like:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- Looking for pthread.h</span><br><span class="line">-- Looking for pthread.h - not found</span><br></pre></td></tr></table></figure></p>
-<p>This can be ignore. </p>
-<p>After that, you should see complete tree structure in your working dir like:<br>/build–/CMakeFiles<br>/——-/examples<br>/——-/tools<br>/——-/x64<br>/—–CUTLASS.sln<br>/—–.(Some project generated files)<br>/—–.<br>/—–.<br>Then, open the <strong>CUTLASS.sln</strong> with Visual Studio 2017, right click on the project <strong>ALL_BUILD</strong>, select build, and wait.</p>
-<p>At last, you should see executable file in /tools/test/unit/debug/cutlass_unit_test.exe, run it!</p>
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h3 id="为什么有这篇文章？"><a href="#为什么有这篇文章？" class="headerlink" title="为什么有这篇文章？"></a>为什么有这篇文章？</h3><p>近两年深度学习专用芯片(ASIC)尤其是推理芯片层出不穷，Google的TPU，NVIDIA的Tensor Core，寒武纪的MLU，使用的架构都不尽相同，这里仅对ASIC现状结合自己的学习进行一个简单的总结。</p>
 
       
     </div>
@@ -408,13 +368,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/CUDA/" rel="tag"># CUDA</a>
-          
-            <a href="/tags/C/" rel="tag"># C</a>
-          
-            <a href="/tags/C/" rel="tag"># C++</a>
-          
-            <a href="/tags/CUTLASS/" rel="tag"># CUTLASS</a>
+            <a href="/tags/Arch/" rel="tag"># Arch</a>
           
         </div>
       
@@ -427,15 +381,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/05/18/SM-Programming-Guide/" rel="next" title="SM Programming Guide">
+                <i class="fa fa-chevron-left"></i> SM Programming Guide
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/26/皇牌空战7：未知天空-ACE7-Skies-Unknown-武器Tips/" rel="prev" title="皇牌空战7：未知天空(ACE7: Skies Unknown) 武器Tips">
-                皇牌空战7：未知天空(ACE7: Skies Unknown) 武器Tips <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -615,7 +569,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#About-CUTLASS"><span class="nav-number">1.</span> <span class="nav-text">About CUTLASS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Parperation"><span class="nav-number">2.</span> <span class="nav-text">Parperation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Constructing-CUTLASS"><span class="nav-number">3.</span> <span class="nav-text">Constructing CUTLASS</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么有这篇文章？"><span class="nav-number">1.0.1.</span> <span class="nav-text">为什么有这篇文章？</span></a></li></ol></li></ol></div>
             
 
           </div>
