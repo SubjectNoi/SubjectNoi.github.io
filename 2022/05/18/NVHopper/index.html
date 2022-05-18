@@ -20,28 +20,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="0. 开始之前及总体感想 文章标题：Review Log: QIG: Quantifying the Importance and Interaction of GPGPU Architecture Parameters  期刊&#x2F;会议：TCAD VOL.37, NO.6, 2018  这篇文章和我下一个想做的工作有重合，所以会以较为aggressive的态度来写review log（">
+    <meta name="description" content="NVIDIA Hopper 架构GPU浅析原文地址(2022.03.22) 0. 引言2022年GTC大会，老黄介绍了基于NVIDIA最新Hopper架构的NVIDIA H100 Tensor Core GPU。本文将带你深入Hopper架构并介绍Hopper架构的一些重要新特性。 1. NVIDIA H100 Tensor Core GPU简介NVIDIA H100 Tensor Core GP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Review Log: QIG: Quantifying the Importance and Interaction of GPGPU Architecture Parameters (TCAD VOL.37, NO.6, 2018)">
-<meta property="og:url" content="http://example.com/2022/05/05/Review-Log-QIG-Quantifying-the-Importance-and-Interaction-of-GPGPU-Architecture-Parameters-TCAD-VOL-37-NO-6-2018/index.html">
+<meta property="og:title" content="NVHopper">
+<meta property="og:url" content="http://example.com/2022/05/18/NVHopper/index.html">
 <meta property="og:site_name" content="Subject No.i">
-<meta property="og:description" content="0. 开始之前及总体感想 文章标题：Review Log: QIG: Quantifying the Importance and Interaction of GPGPU Architecture Parameters  期刊&#x2F;会议：TCAD VOL.37, NO.6, 2018  这篇文章和我下一个想做的工作有重合，所以会以较为aggressive的态度来写review log（">
+<meta property="og:description" content="NVIDIA Hopper 架构GPU浅析原文地址(2022.03.22) 0. 引言2022年GTC大会，老黄介绍了基于NVIDIA最新Hopper架构的NVIDIA H100 Tensor Core GPU。本文将带你深入Hopper架构并介绍Hopper架构的一些重要新特性。 1. NVIDIA H100 Tensor Core GPU简介NVIDIA H100 Tensor Core GP">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-05-05T04:22:47.000Z">
-<meta property="article:modified_time" content="2022-05-05T08:35:06.476Z">
+<meta property="og:image" content="http://subjectnoi.github.io/2022/05/18/NVHopper/Fig1.png">
+<meta property="og:image" content="http://subjectnoi.github.io/2022/05/18/NVHopper/Fig2.png">
+<meta property="article:published_time" content="2022-05-18T04:11:02.000Z">
+<meta property="article:modified_time" content="2022-05-18T04:59:43.707Z">
 <meta property="article:author" content="Zihan(Altair) Liu, Subject No.i">
-<meta property="article:tag" content="Paper Review">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://subjectnoi.github.io/2022/05/18/NVHopper/Fig1.png">
 
 
-<link rel="canonical" href="http://example.com/2022/05/05/Review-Log-QIG-Quantifying-the-Importance-and-Interaction-of-GPGPU-Architecture-Parameters-TCAD-VOL-37-NO-6-2018/">
+<link rel="canonical" href="http://example.com/2022/05/18/NVHopper/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/05/05/Review-Log-QIG-Quantifying-the-Importance-and-Interaction-of-GPGPU-Architecture-Parameters-TCAD-VOL-37-NO-6-2018/","path":"2022/05/05/Review-Log-QIG-Quantifying-the-Importance-and-Interaction-of-GPGPU-Architecture-Parameters-TCAD-VOL-37-NO-6-2018/","title":"Review Log: QIG: Quantifying the Importance and Interaction of GPGPU Architecture Parameters (TCAD VOL.37, NO.6, 2018)"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/05/18/NVHopper/","path":"2022/05/18/NVHopper/","title":"NVHopper"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Review Log: QIG: Quantifying the Importance and Interaction of GPGPU Architecture Parameters (TCAD VOL.37, NO.6, 2018) | Subject No.i</title>
+<title>NVHopper | Subject No.i</title>
   
 
 
@@ -116,7 +118,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-%E5%BC%80%E5%A7%8B%E4%B9%8B%E5%89%8D%E5%8F%8A%E6%80%BB%E4%BD%93%E6%84%9F%E6%83%B3"><span class="nav-number">1.</span> <span class="nav-text">0. 开始之前及总体感想</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Summary"><span class="nav-number">2.</span> <span class="nav-text">1. Summary</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Strength"><span class="nav-number">3.</span> <span class="nav-text">2. Strength</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Weakness"><span class="nav-number">4.</span> <span class="nav-text">3. Weakness</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Questions-and-Comments-to-Authors"><span class="nav-number">5.</span> <span class="nav-text">4. Questions and Comments to Authors</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Paper-Writting-1-5"><span class="nav-number">6.</span> <span class="nav-text">5. Paper Writting (1-5)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-Overall-Merit-1-5"><span class="nav-number">7.</span> <span class="nav-text">6. Overall Merit (1-5)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-Confidence-1-4"><span class="nav-number">8.</span> <span class="nav-text">7. Confidence (1-4)</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NVIDIA-Hopper-%E6%9E%B6%E6%9E%84GPU%E6%B5%85%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">NVIDIA Hopper 架构GPU浅析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-%E5%BC%95%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">0. 引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-NVIDIA-H100-Tensor-Core-GPU%E7%AE%80%E4%BB%8B"><span class="nav-number">1.2.</span> <span class="nav-text">1. NVIDIA H100 Tensor Core GPU简介</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -195,7 +197,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/05/Review-Log-QIG-Quantifying-the-Importance-and-Interaction-of-GPGPU-Architecture-Parameters-TCAD-VOL-37-NO-6-2018/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/18/NVHopper/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/ariharananami.jpeg">
@@ -208,12 +210,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Review Log: QIG: Quantifying the Importance and Interaction of GPGPU Architecture Parameters (TCAD VOL.37, NO.6, 2018) | Subject No.i">
+      <meta itemprop="name" content="NVHopper | Subject No.i">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Review Log: QIG: Quantifying the Importance and Interaction of GPGPU Architecture Parameters (TCAD VOL.37, NO.6, 2018)
+          NVHopper
         </h1>
 
         <div class="post-meta-container">
@@ -225,7 +227,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-05-05 12:22:47 / Modified: 16:35:06" itemprop="dateCreated datePublished" datetime="2022-05-05T12:22:47+08:00">2022-05-05</time>
+      <time title="Created: 2022-05-18 12:11:02 / Modified: 12:59:43" itemprop="dateCreated datePublished" datetime="2022-05-18T12:11:02+08:00">2022-05-18</time>
     </span>
 
   
@@ -238,35 +240,25 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="0-开始之前及总体感想"><a href="#0-开始之前及总体感想" class="headerlink" title="0. 开始之前及总体感想"></a>0. 开始之前及总体感想</h1><ul>
-<li><p>文章标题：Review Log: QIG: Quantifying the Importance and Interaction of GPGPU Architecture Parameters</p>
-</li>
-<li><p>期刊&#x2F;会议：TCAD VOL.37, NO.6, 2018</p>
-</li>
-<li><p>这篇文章和我下一个想做的工作有重合，所以会以较为aggressive的态度来写review log（</p>
-</li>
-<li><p>本文主要介绍了一种用于GPU设计过程中设计空间探索（Design Space Explore，DSE）的系统，通过将设计参数与GPU Kernel的运行性能数据输入给一个<em>可解释</em>的机器学习模型（有点类似随机森林的决策树算法）来衡量不同任务下不同设计参数的优劣。当然这篇文章最重要的贡献我认为不在于模型准确率活着加速GPU架构设计等等，而在于其挖掘的GPU设计参数对于计算任务的影响，以及参数之间互相影响的模式。</p>
-</li>
-<li><p>本文采用可解释的机器学习模型，在获得高预测准确率的同时能够解释数据与硬件之间的关系。然而有些解释在我看来并不能真实反应硬件设计参数对性能的影响，也许是将相关性解释为了因果性，详见Review Log正文。</p>
-<h1 id="1-Summary"><a href="#1-Summary" class="headerlink" title="1. Summary"></a>1. Summary</h1><p>This work proposed an explainable performance model of GPGPUs, based on which the authors first predict the performance of a given kernel on giver hardware with high accuracy, then explain the relation between GPGPU behaviors and design parameters. </p>
-<h1 id="2-Strength"><a href="#2-Strength" class="headerlink" title="2. Strength"></a>2. Strength</h1></li>
-</ul>
+        <h1 id="NVIDIA-Hopper-架构GPU浅析"><a href="#NVIDIA-Hopper-架构GPU浅析" class="headerlink" title="NVIDIA Hopper 架构GPU浅析"></a><code>NVIDIA Hopper</code> 架构GPU浅析</h1><p><a target="_blank" rel="noopener" href="https://developer.nvidia.com/blog/nvidia-hopper-architecture-in-depth/">原文地址(2022.03.22)</a></p>
+<h2 id="0-引言"><a href="#0-引言" class="headerlink" title="0. 引言"></a>0. 引言</h2><p>2022年GTC大会，老黄介绍了基于<code>NVIDIA</code>最新<code>Hopper</code>架构的<code>NVIDIA H100 Tensor Core GPU</code>。本文将带你深入<code>Hopper</code>架构并介绍Hopper架构的一些重要新特性。</p>
+<h2 id="1-NVIDIA-H100-Tensor-Core-GPU简介"><a href="#1-NVIDIA-H100-Tensor-Core-GPU简介" class="headerlink" title="1. NVIDIA H100 Tensor Core GPU简介"></a>1. <code>NVIDIA H100 Tensor Core GPU</code>简介</h2><p><code>NVIDIA H100 Tensor Core GPU</code>是<code>NVIDIA</code>发行的第九代数据中心GPU，该GPU被设计用来在大规模人工智能应用以及高性能计算应用中提供相较于前代商品<code>NVIDIA A100 Tensor Core GPU</code>数量级级别的提升。<code>H100</code>继承了<code>A100</code>上为提升人工智能及高性能计算性能的设计特点，且显著提高了架构效率。图1展示了基于新<code>SXM5</code>板卡的<code>NVIDIA H100 Tensor Core GPU</code>。</p>
+<p><img src="http://subjectnoi.github.io/2022/05/18/NVHopper/Fig1.png" alt="Fig1"></p>
+<p>对于如今主流的人工智能以及高性能计算任务，配备有<code>InfiniBand</code>互联技术的<code>H100</code>相比<code>A100</code>能提供最多30倍的性能提升（译者：可能类似<code>AMD Infinity Fabric</code>，致力于提升设备、节点间的带宽）。最新的<code>NVLink</code>互联系统主要着眼于如今最具挑战性的、需要大量GPU计算节点提供加速进行模型并行的任务。基于<code>InifniBand</code>的加持，这些任务在<code>H100</code>上的性能又一次得到了飞跃。图2展示了<code>A100</code>, <code>H100</code>, <code>H100+InfiniBand</code>在高性能计算、AI训练与推理任务中的性能。</p>
+<p><img src="http://subjectnoi.github.io/2022/05/18/NVHopper/Fig2.png" alt="Fig2"></p>
+<p>在本次GTC上，NVIDIA发布了新的<code>NVIDIA Grace Hopper Superchip</code>产品。 <code>NVIDIA Hopper H100 Tensor Core GPU</code>将为<code>NVIDIA Grace Hopper Superchip CPU+GPU</code>架构提供动力，该架构专为TB级加速计算而打造，并能在大型人工智能模型以及高性能计算任务重提供超10倍的性能。<br><code>NVIDIA Grace Hopper Superchip</code>利用<code>Arm</code>架构的灵活性从头开始设计用于加速计算de CPU和服务器架构。 <code>H100</code>与<code>NVIDIA Grace CPU</code>通过<code>NVIDIA</code>的芯片互联技术连接，提供<code>900 GB/s</code>的总带宽，比<code>PCIe Gen5</code>快7倍。 与当今最快的服务器相比，这种创新设计可提供高达30倍的总带宽，并为使用巨量数据的应用提供超10倍的性能提升。</p>
+<p>下面是<code>NVIDIA H100 Tensor Core GPU</code>新特性的简要总结：</p>
 <ul>
-<li>The paper is well organized and well-motivated. </li>
-<li>The performance model they use is highly explainable with considerable accuracy.</li>
-<li>Some important design insights are revealed via their model.</li>
-<li>The performance model can be easily generalized to other hardware and other performance metrics (from IPS to Power consumption).<h1 id="3-Weakness"><a href="#3-Weakness" class="headerlink" title="3. Weakness"></a>3. Weakness</h1></li>
+<li>新设计的流多处理器(SM)提供了许多性能及效率上的提升，具体如下：<ul>
+<li>第四代张量核心：若将每个SM的提升、SM数量的提升以及频率的提升结合考虑，<code>H100</code>相比<code>A100</code>能提供超6倍的性能提升。在每个SM层面，<code>H100</code>相比<code>A100</code>在每种数据类型上能提供2倍的矩阵乘加(<code>MMA</code>)性能，在<code>FP8</code>数据类型上，相比于<code>FP16</code>数据类型则能提供4倍于<code>A100</code>的性能。而张量核心的稀疏特性能够利用深度学习中的细粒度结构化稀疏，提供2倍于稠密张量计算的性能。</li>
+<li>新的<code>DPX</code>指令：该指令能够加速动态规划算法，相比<code>A100</code>提升7倍的性能。例如基因组处理中的<code>Smith-Waterman</code>算法以及为机器人队伍寻找最优路径的<code>Floyd-Warshall</code>算法。</li>
+<li>3倍性能的IEEE标准浮点处理性能：相比<code>A100</code>，SM同频浮点性能为2倍。而得益于更高的频率以及更多的SM，总体性能为3倍。</li>
+<li>新的抽象层<code>Thread block Cluster</code>：这一特性能够使程序员能够显式地以大于运行在一个SM上的一个线程块<code>Thread block</code>的粒度控制程序的局部性。这一特性通过增加一个抽象层扩展了<code>CUDA</code>编程模型，现在的编程模型包括<code>thread</code>, <code>thread block</code>, <code>thread block cluster</code>, <code>grid</code>。<code>Thread block cluster</code>能够使多个线程块同时运行于多个SM，并支持同步、集合通信以及数据交换。</li>
+<li>分布式共享内存：这一机制允许SM之间点对点横跨多个SM的共享内存地进行包含<code>load</code>, <code>store</code>以及源自操作在内的通信。</li>
+<li>新的异步执行模型：通过张量存储加速器<code>TMA</code>能够在全剧内存以及共享内存间进行更高效的大规模数据通信。TMA同样还支持<code>thread block cluster</code>内的<code>thread block</code>进行异步数据拷贝。为保证数据原子移动以及同步，TMA还加入了新的异步事物屏障(<code>asynchronous transaction barrier</code>)。</li>
 </ul>
-<ul>
-<li>Some findings are misleading, which will be datailed in questions and comments.<h1 id="4-Questions-and-Comments-to-Authors"><a href="#4-Questions-and-Comments-to-Authors" class="headerlink" title="4. Questions and Comments to Authors"></a>4. Questions and Comments to Authors</h1></li>
+</li>
 </ul>
-<ol start="0">
-<li>The problem this work target is emerging and important, and the authors explain their motivation well.</li>
-<li>In the analysis of importance analysis, the <em>core frequency</em> is treated as the most important design factor. While this parameter is not the most challenging factor the hardware designers concerned. It’s trival that with higher frequency the performance and power of a GPGPU kernel will increase. So is the <em>instruction replay overhead</em> which is a factor related to the profiler itself. I think it’s necessary to filter out the influence of these parameters other wise some misleading findings will be given. (For example, execute all the kernels at a fixed core frequency or fixed power budget)</li>
-<li>I think the benchmark amount and the problem size are limited, and the register per thread is always sufficient. While for some recent applications with very heavy computation burdens, there may exist other patterns. (这点其实有点时空警察，但是2018年应该也是有那些很大的模型、很大的计算任务了)</li>
-<li>GPUWattch is available for power estimated with higher explainable. </li>
-<li>Overall, the findings and hardware patterns proposed in this work is reasonable and insightful. <h1 id="5-Paper-Writting-1-5"><a href="#5-Paper-Writting-1-5" class="headerlink" title="5. Paper Writting (1-5)"></a>5. Paper Writting (1-5)</h1>4<h1 id="6-Overall-Merit-1-5"><a href="#6-Overall-Merit-1-5" class="headerlink" title="6. Overall Merit (1-5)"></a>6. Overall Merit (1-5)</h1>4 - Weak Accept<h1 id="7-Confidence-1-4"><a href="#7-Confidence-1-4" class="headerlink" title="7. Confidence (1-4)"></a>7. Confidence (1-4)</h1>3 - Knowledgeable</li>
-</ol>
 
     </div>
 
@@ -275,22 +267,16 @@
     
 
     <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Paper-Review/" rel="tag"># Paper Review</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/04/28/Paper-Review-Log/" rel="prev" title="Paper Review Log">
-                  <i class="fa fa-chevron-left"></i> Paper Review Log
+                <a href="/2022/05/05/EA-18G-Flight-Manual-Chinese-Translation/" rel="prev" title="新坑：美国海军 E/A-18G 咆哮虫飞行手册翻译">
+                  <i class="fa fa-chevron-left"></i> 新坑：美国海军 E/A-18G 咆哮虫飞行手册翻译
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/05/05/EA-18G-Flight-Manual-Chinese-Translation/" rel="next" title="新坑：美国海军 E/A-18G 咆哮虫飞行手册翻译">
-                  新坑：美国海军 E/A-18G 咆哮虫飞行手册翻译 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
