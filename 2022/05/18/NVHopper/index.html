@@ -183,6 +183,7 @@
     const chisato = SakanaWidget.getCharacter('chisato');
     chisato.initialState = {
         ...chisato.initialState,
+        d: 0.999,
     };
     SakanaWidget.registerCharacter('chisato', chisato);
     new SakanaWidget({ character: 'chisato' }).mount('#sakana-widget');
@@ -200,6 +201,7 @@
     const takina = SakanaWidget.getCharacter('takina');
     takina.initialState = {
         ...takina.initialState,
+        d: 0.999,
     };
     SakanaWidget.registerCharacter('takina', takina);
     new SakanaWidget({ character: 'takina' }).mount('#sakana-widget-2');
